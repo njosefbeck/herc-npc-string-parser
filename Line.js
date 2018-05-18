@@ -4,11 +4,10 @@ const eventEmitter = Object.create(new EventEmitter());
 
 module.exports = Object.assign(eventEmitter, {
 	create(lineNumber, file, line) {
-		this.lineNumber = lineNumber;
+    this.id = file + lineNumber;
+		this.lineNumbers = [lineNumber];
 		this.file = file;
-		this.line = {
-			original: line,
-			message: line.match(/".+"/)[0].replace(/"/g, ""),
-		}
+    this.original = line;
+    this.message = line.match(/".+"/)[0].replace(/"/g, "");
 	}
 });
